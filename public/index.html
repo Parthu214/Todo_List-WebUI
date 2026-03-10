@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">✅</div>
+          <div>
+            <h1>Todo Dashboard</h1>
+            <p class="subtitle">Stay on top of your tasks and deadlines</p>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="btn icon-btn" id="themeToggle" title="Toggle theme">
+            <i class="fa-regular fa-moon"></i>
+          </button>
+          <button class="btn primary" id="showNewTask">+ New Task</button>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Pending</h2>
+            <span class="tag" id="pendingCount">0</span>
+          </div>
+          <div class="grid" id="pendingList"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Completed</h2>
+            <span class="tag" id="completedCount">0</span>
+          </div>
+          <div class="grid" id="completedList"></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Built with Node.js, Express, MongoDB, and vanilla JS. Reminders run in your
+          browser.
+        </p>
+      </footer>
+
+      <div class="modal" id="taskModal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+          <header class="modal-header">
+            <h3 id="modalTitle">New Task</h3>
+            <button class="icon-btn" id="closeModal" aria-label="Close">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </header>
+          <form class="modal-body" id="taskForm">
+            <div class="field">
+              <label for="title">Title</label>
+              <input id="title" name="title" type="text" required autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="description">Description</label>
+              <textarea id="description" name="description" rows="2"></textarea>
+            </div>
+            <div class="field grid-2">
+              <div>
+                <label for="dueDate">Due Date</label>
+                <input id="dueDate" name="dueDate" type="datetime-local" />
+              </div>
+              <div>
+                <label for="reminder">Reminder</label>
+                <input id="reminder" name="reminder" type="datetime-local" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="subtaskInput">Add Subtask</label>
+              <div class="subtask-row">
+                <input id="subtaskInput" type="text" placeholder="Press Enter to add" autocomplete="off" />
+                <span class="muted">(optional)</span>
+              </div>
+              <ul class="subtask-list" id="subtaskList"></ul>
+            </div>
+            <div class="form-actions">
+              <button class="btn secondary" type="button" id="cancelTask">Cancel</button>
+              <button class="btn primary" type="submit" id="saveTask">Save Task</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="toast" id="toast" aria-live="polite"></div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
